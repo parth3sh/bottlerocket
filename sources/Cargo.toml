@@ -98,7 +98,9 @@ members = [
 
     "constants",
 
-    "shimpei"
+    "shimpei",
+
+    "ascwp"
 ]
 
 [profile.release]
