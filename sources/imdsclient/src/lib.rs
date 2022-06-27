@@ -164,7 +164,7 @@ impl ImdsClient {
 
     /// Get lifecycle state from instance metadata.
     pub async fn fetch_lifecycle_state(&mut self) -> Result<Option<String>> {
-        let instance_type_target = "autoscaling/target-lifecycle-state";
+        let instance_type_target = "meta-data/autoscaling/target-lifecycle-state";
         self.fetch_string(&instance_type_target).await
     }
 
