@@ -1,5 +1,3 @@
-//! Provides the list of errors for `cfsignal`.
-
 use snafu::Snafu;
 use std::path::PathBuf;
 
