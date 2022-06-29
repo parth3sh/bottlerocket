@@ -6,8 +6,6 @@ use snafu::{OptionExt, ResultExt};
 use tokio::runtime::Runtime;
 use std::env;
 
-
-
 //Uses function from imds client to fetch lifecycle state
 async fn get_lifecycle_state(client: &mut ImdsClient) -> Result<String> {
     client.fetch_lifecycle_state().await
@@ -28,9 +26,7 @@ async fn waiter() -> Result<()>{
     Ok(())
 }
 
-
 #[tokio::main]
 async fn main() {
     waiter().await;
 }
-
