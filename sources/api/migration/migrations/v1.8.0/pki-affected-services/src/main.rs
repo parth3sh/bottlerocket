@@ -1,27 +1,19 @@
 #![deny(rust_2018_idioms)]
 
-use migration_helpers::common_migrations::{
-    MetadataListReplacement, ReplaceMetadataListsMigration,
-};
+use migration_helpers::common_migrations::ReplaceStringMigration;
 use migration_helpers::{migrate, Result};
 use std::process;
 
-/// We updated the 'affected-services' list metadata for 'settings.pki' to include
-/// containerd or docker on upgrade, and to remove them on downgrade depending on the
-/// running variant.
+const OLD_CONTROL_SOURCE_VAL: &str = "public.ecr.aws/bottlerocket/bottlerocket-control:v0.6.0";
+const NEW_CONTROL_SOURCE_VAL: &str = "public.ecr.aws/bottlerocket/bottlerocket-control:v0.6.1";
+
+/// We bumped the version of the default control container
 fn run() -> Result<()> {
-    migrate(ReplaceMetadataListsMigration(vec![
-        MetadataListReplacement {
-            setting: "settings.pki",
-            metadata: "affected-services",
-            old_vals: &["pki"],
-            new_vals: if cfg!(variant_runtime = "k8s") {
-                &["pki", "containerd"]
-            } else {
-                &["pki", "docker"]
-            },
-        },
-    ]))
+    migrate(ReplaceStringMigration {
+        setting: "settings.host-containers.control.source",
+        old_val: OLD_CONTROL_SOURCE_VAL,
+        new_val: NEW_CONTROL_SOURCE_VAL,
+    })
 }
 
 // Returning a Result from main makes it print a Debug representation of the error, but with Snafu
