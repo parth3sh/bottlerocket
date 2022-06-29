@@ -317,7 +317,7 @@ dependencies = [
  "serde",
  "serde_json",
  "signal-hook",
- "simplelog 0.12.0",
+ "simplelog",
  "snafu",
  "tokio",
  "tokio-tungstenite",
@@ -352,7 +352,7 @@ dependencies = [
  "semver",
  "serde",
  "serde_json",
- "simplelog 0.12.0",
+ "simplelog",
  "snafu",
  "thar-be-updates",
  "toml",
@@ -398,7 +398,7 @@ dependencies = [
  "rusoto_cloudformation",
  "rusoto_core",
  "serde",
- "simplelog 0.11.2",
+ "simplelog",
  "snafu",
  "tokio",
  "toml",
@@ -650,7 +650,7 @@ dependencies = [
  "models",
  "serde",
  "serde_json",
- "simplelog 0.12.0",
+ "simplelog",
  "snafu",
  "tokio",
 ]
@@ -763,7 +763,7 @@ dependencies = [
  "models",
  "serde",
  "serde_json",
- "simplelog 0.12.0",
+ "simplelog",
  "snafu",
  "tempfile",
  "tokio",
@@ -787,7 +787,7 @@ dependencies = [
  "rusoto_cloudformation",
  "rusoto_core",
  "serde",
- "simplelog 0.12.0",
+ "simplelog",
  "snafu",
  "tokio",
  "toml",
@@ -906,7 +906,7 @@ dependencies = [
  "models",
  "serde",
  "serde_json",
- "simplelog 0.12.0",
+ "simplelog",
  "snafu",
  "tokio",
 ]
@@ -1154,7 +1154,7 @@ dependencies = [
  "generate-readme",
  "log",
  "serde",
- "simplelog 0.12.0",
+ "simplelog",
  "snafu",
  "tempfile",
  "toml",
@@ -1187,7 +1187,7 @@ dependencies = [
  "serde-xml-rs",
  "serde_json",
  "serde_plain",
- "simplelog 0.12.0",
+ "simplelog",
  "snafu",
  "tokio",
  "toml",
@@ -1206,7 +1206,7 @@ dependencies = [
  "schnauzer",
  "serde",
  "serde_json",
- "simplelog 0.12.0",
+ "simplelog",
  "snafu",
  "tokio",
 ]
@@ -1634,7 +1634,7 @@ dependencies = [
  "models",
  "serde",
  "serde_json",
- "simplelog 0.12.0",
+ "simplelog",
  "snafu",
  "tokio",
 ]
@@ -2043,7 +2043,7 @@ dependencies = [
  "log",
  "reqwest",
  "serde",
- "simplelog 0.12.0",
+ "simplelog",
  "snafu",
  "structopt",
  "tempfile",
@@ -2080,7 +2080,7 @@ dependencies = [
  "rand",
  "regex",
  "semver",
- "simplelog 0.12.0",
+ "simplelog",
  "snafu",
  "storewolf",
  "tempfile",
@@ -2641,7 +2641,7 @@ dependencies = [
  "schnauzer",
  "serde_json",
  "signpost",
- "simplelog 0.12.0",
+ "simplelog",
  "snafu",
  "tokio",
 ]
@@ -3217,7 +3217,7 @@ dependencies = [
  "models",
  "serde",
  "serde_json",
- "simplelog 0.12.0",
+ "simplelog",
  "snafu",
  "tokio",
 ]
@@ -3233,7 +3233,7 @@ dependencies = [
  "log",
  "serde",
  "serde_json",
- "simplelog 0.12.0",
+ "simplelog",
  "snafu",
  "tokio",
 ]
@@ -3303,7 +3303,7 @@ dependencies = [
  "log",
  "serde",
  "serde_json",
- "simplelog 0.12.0",
+ "simplelog",
  "snafu",
  "tokio",
 ]
@@ -3315,7 +3315,7 @@ dependencies = [
  "generate-readme",
  "log",
  "nix",
- "simplelog 0.12.0",
+ "simplelog",
  "snafu",
 ]
 
@@ -3355,17 +3355,6 @@ dependencies = [
  "serde",
  "serde_plain",
  "snafu",
-]
-
-[[package]]
-name = "simplelog"
-version = "0.11.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c1348164456f72ca0116e4538bdaabb0ddb622c7d9f16387c725af3e96d6001c"
-dependencies = [
- "chrono",
- "log",
- "termcolor",
 ]
 
 [[package]]
@@ -3456,7 +3445,7 @@ dependencies = [
  "schnauzer",
  "serde",
  "serde_json",
- "simplelog 0.12.0",
+ "simplelog",
  "snafu",
  "tempfile",
  "tokio",
@@ -3476,7 +3465,7 @@ dependencies = [
  "models",
  "rand",
  "semver",
- "simplelog 0.12.0",
+ "simplelog",
  "snafu",
  "toml",
  "walkdir",
@@ -3537,7 +3526,7 @@ dependencies = [
  "models",
  "serde",
  "serde_json",
- "simplelog 0.12.0",
+ "simplelog",
  "snafu",
  "tokio",
 ]
@@ -3623,7 +3612,7 @@ dependencies = [
  "nix",
  "schnauzer",
  "serde_json",
- "simplelog 0.12.0",
+ "simplelog",
  "snafu",
  "tokio",
 ]
@@ -3649,7 +3638,7 @@ dependencies = [
  "serde_json",
  "serde_plain",
  "signpost",
- "simplelog 0.12.0",
+ "simplelog",
  "snafu",
  "tempfile",
  "tokio",
@@ -4018,7 +4007,7 @@ dependencies = [
  "serde_plain",
  "signal-hook",
  "signpost",
- "simplelog 0.12.0",
+ "simplelog",
  "snafu",
  "structopt",
  "tempfile",
