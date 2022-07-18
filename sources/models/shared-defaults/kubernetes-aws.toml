@@ -25,3 +25,9 @@ affected-services = ["containerd", "kubernetes", "host-containerd", "host-contai
 # AutoScaling
 [settings.autoscaling]
 should-wait = false
+configuration-files = ["autoscaling-toml"]
+restart-commands = []
+
+[configuration-files.autoscaling-toml]
+path = "/etc/autoscaling.toml"
+template-path = "/usr/share/templates/autoscaling-toml"

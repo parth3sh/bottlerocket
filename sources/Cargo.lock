@@ -392,6 +392,7 @@ checksum = "47253b98986dafc7a3e1cf3259194f1f47ac61abb57a57f46ec09e48d004ecda"
 name = "ascwp"
 version = "0.1.0"
 dependencies = [
+ "httptest",
  "hyper",
  "imdsclient",
  "log",
@@ -400,6 +401,7 @@ dependencies = [
  "serde",
  "simplelog",
  "snafu",
+ "tempfile",
  "tokio",
  "toml",
 ]

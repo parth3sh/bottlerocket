@@ -1,10 +1,15 @@
 mod error;
+mod config;
 use imdsclient::ImdsClient;
 use crate::error::Result;
 use imdsclient::Error;
 use snafu::{OptionExt, ResultExt};
 use tokio::runtime::Runtime;
 use std::env;
+use std::path::{Path, PathBuf};
+use crate::config::Config;
+const TEST_CONFIG_PATH: &str = "/etc/autoscaling.toml";
+
 
 //Uses function from imds client to fetch lifecycle state
 async fn get_lifecycle_state(client: &mut ImdsClient) -> Result<String> {
@@ -13,32 +18,6 @@ async fn get_lifecycle_state(client: &mut ImdsClient) -> Result<String> {
     .context(error::ImdsNoneSnafu {
         what: "instance-id",
     })
-}
-
-//Uses apiclient to get autoscaling.should-wait setting
-async fn get_autoscaling_setting<P>(socket_path: P) -> Result<model::Model>
-where
-    P: AsRef<Path>,
-{
-    let uri = "/";
-    let method = "GET";
-    trace!("{}ing from {}", method, uri);
-    let (code, response_body) = apiclient::raw_request(socket_path, &uri, method, None)
-        .await
-        .context(error::APIRequestSnafu { method, uri })?;
-
-    if !code.is_success() {
-        return error::APIResponseSnafu {
-            method,
-            uri,
-            code,
-            response_body,
-        }
-        .fail();
-    }
-    trace!("JSON response: {}", response_body);
-
-    serde_json::from_str(&response_body).context(error::ResponseJsonSnafu { method, uri })
 }
 
 async fn waiter() -> Result<()>{
@@ -52,7 +31,14 @@ async fn waiter() -> Result<()>{
     Ok(())
 }
 
+fn getConfig() -> Config{
+    let tempConfig = Config::from_file(TEST_CONFIG_PATH).unwrap();
+    println!("SHOULD WAIT VALUE IS {}", tempConfig.should_wait);
+    return tempConfig;
+}
+
 #[tokio::main]
 async fn main() {
+    getConfig();
     waiter().await;
 }
