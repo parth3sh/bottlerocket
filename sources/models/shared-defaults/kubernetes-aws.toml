@@ -26,6 +26,6 @@ affected-services = ["containerd", "kubernetes", "host-containerd", "host-contai
 [settings.autoscaling]
 should-wait = false
 
-[configuration-files.autoscaling-toml]
-path = "/etc/autoscaling.toml"
-template-path = "/usr/share/templates/autoscaling-toml"
+[configuration-files.ascwp-toml]
+path = "/etc/ascwp.toml"
+template-path = "/usr/share/templates/ascwp-toml"
