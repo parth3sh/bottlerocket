@@ -29,6 +29,7 @@ Source6: metricdog-toml
 Source7: host-ctr-toml
 Source8: oci-default-hooks-json
 Source9: cfsignal-toml
+Source10: ascwp-toml
 
 # 1xx sources: systemd units
 Source100: apiserver.service
@@ -83,6 +84,8 @@ Requires: %{_cross_os}thar-be-settings
 Requires: %{_cross_os}thar-be-updates
 Requires: %{_cross_os}updog
 Requires: %{_cross_os}shimpei
+Requires: %{_cross_os}ascwp
+
 
 %if %{_is_k8s_variant}
 %if %{_is_aws_variant}
@@ -272,6 +275,11 @@ Summary: Manages bootstrap-containers
 %description -n %{_cross_os}bootstrap-containers
 %{summary}.
 
+%package -n %{_cross_os}ascwp
+Summary: Warmpool support
+%description -n %{_cross_os}ascwp
+%{summary}.
+
 %prep
 %setup -T -c
 %cargo_prep
@@ -330,6 +338,7 @@ echo "** Output from non-static builds:"
     -p prairiedog \
     -p certdog \
     -p shimpei \
+    -p ascwp \
 %if %{_is_ecs_variant}
     -p ecs-settings-applier \
 %endif
@@ -367,6 +376,7 @@ for p in \
   signpost updog metricdog logdog \
   ghostdog bootstrap-containers \
   shimpei \
+  ascwp \
 %if %{_is_ecs_variant}
   ecs-settings-applier \
 %endif
@@ -423,7 +433,7 @@ install -d %{buildroot}%{_cross_datadir}/updog
 install -p -m 0644 %{_cross_repo_root_json} %{buildroot}%{_cross_datadir}/updog
 
 install -d %{buildroot}%{_cross_templatedir}
-install -p -m 0644 %{S:5} %{S:6} %{S:7} %{S:8} %{buildroot}%{_cross_templatedir}
+install -p -m 0644 %{S:5} %{S:6} %{S:7} %{S:8} %{S:9} %{S:10} %{buildroot}%{_cross_templatedir}
 
 install -d %{buildroot}%{_cross_unitdir}
 install -p -m 0644 \
@@ -437,6 +447,7 @@ install -p -m 0644 \
 
 %if %{_is_aws_variant}
 install -p -m 0644 %{S:9} %{buildroot}%{_cross_templatedir}
+install -p -m 0644 %{S:10} %{buildroot}%{_cross_templatedir}
 install -p -m 0644 %{S:117} %{buildroot}%{_cross_unitdir}
 %endif
 
@@ -540,6 +551,7 @@ install -p -m 0644 %{S:300} %{buildroot}%{_cross_udevrulesdir}/80-ephemeral-stor
 %{_cross_unitdir}/metricdog.timer
 %{_cross_unitdir}/send-boot-success.service
 
+
 %files -n %{_cross_os}logdog
 %{_cross_bindir}/logdog
 
@@ -558,6 +570,11 @@ install -p -m 0644 %{S:300} %{buildroot}%{_cross_udevrulesdir}/80-ephemeral-stor
 %{_cross_templatedir}/cfsignal-toml
 %{_cross_unitdir}/cfsignal.service
 %endif
+
+%files -n %{_cross_os}ascwp
+%{_cross_bindir}/ascwp
+%dir %{_cross_templatedir}
+%{_cross_templatedir}/ascwp-toml
 
 %if %{_is_vendor_variant}
 %files -n %{_cross_os}driverdog
