@@ -49,6 +49,7 @@ Source116: load-kernel-modules.service
 Source117: cfsignal.service
 Source118: generate-network-config.service
 Source119: prepare-primary-interface.service
+Source120: ascwp.service
 
 # 2xx sources: tmpfilesd configs
 Source200: migration-tmpfiles.conf
@@ -84,12 +85,12 @@ Requires: %{_cross_os}thar-be-settings
 Requires: %{_cross_os}thar-be-updates
 Requires: %{_cross_os}updog
 Requires: %{_cross_os}shimpei
-Requires: %{_cross_os}ascwp
 
 
 %if %{_is_k8s_variant}
 %if %{_is_aws_variant}
 Requires: %{_cross_os}pluto
+Requires: %{_cross_os}ascwp
 %endif
 Requires: %{_cross_os}static-pods
 %endif
@@ -235,6 +236,11 @@ Summary: Settings generator for ECS
 Summary: Dynamic setting generator for kubernetes
 %description -n %{_cross_os}pluto
 %{summary}.
+
+%package -n %{_cross_os}ascwp
+Summary: Autoscaling warmpool support
+%description -n %{_cross_os}ascwp
+%{summary}.
 %endif
 
 %package -n %{_cross_os}static-pods
@@ -273,11 +279,6 @@ Requires: %{_cross_os}binutils
 %package -n %{_cross_os}bootstrap-containers
 Summary: Manages bootstrap-containers
 %description -n %{_cross_os}bootstrap-containers
-%{summary}.
-
-%package -n %{_cross_os}ascwp
-Summary: Warmpool support
-%description -n %{_cross_os}ascwp
 %{summary}.
 
 %prep
@@ -338,7 +339,6 @@ echo "** Output from non-static builds:"
     -p prairiedog \
     -p certdog \
     -p shimpei \
-    -p ascwp \
 %if %{_is_ecs_variant}
     -p ecs-settings-applier \
 %endif
@@ -349,6 +349,7 @@ echo "** Output from non-static builds:"
 %if %{_is_k8s_variant}
 %if %{_is_aws_variant}
     -p pluto \
+    -p ascwp \
 %endif
     -p static-pods \
 %endif
@@ -376,7 +377,6 @@ for p in \
   signpost updog metricdog logdog \
   ghostdog bootstrap-containers \
   shimpei \
-  ascwp \
 %if %{_is_ecs_variant}
   ecs-settings-applier \
 %endif
@@ -387,6 +387,7 @@ for p in \
 %if %{_is_k8s_variant}
 %if %{_is_aws_variant}
   pluto \
+  ascwp \
 %endif
   static-pods \
 %endif
@@ -439,7 +440,7 @@ install -d %{buildroot}%{_cross_unitdir}
 install -p -m 0644 \
   %{S:100} %{S:101} %{S:102} %{S:103} %{S:105} \
   %{S:106} %{S:107} %{S:110} %{S:111} %{S:112} \
-  %{S:113} %{S:114} %{S:118} %{S:119} \
+  %{S:113} %{S:114} %{S:118} %{S:119} %{S:120} \
 %if %{_is_vendor_variant}
   %{S:115} %{S:116} \
 %endif
@@ -571,11 +572,6 @@ install -p -m 0644 %{S:300} %{buildroot}%{_cross_udevrulesdir}/80-ephemeral-stor
 %{_cross_unitdir}/cfsignal.service
 %endif
 
-%files -n %{_cross_os}ascwp
-%{_cross_bindir}/ascwp
-%dir %{_cross_templatedir}
-%{_cross_templatedir}/ascwp-toml
-
 %if %{_is_vendor_variant}
 %files -n %{_cross_os}driverdog
 %{_cross_bindir}/driverdog
@@ -589,6 +585,12 @@ install -p -m 0644 %{S:300} %{buildroot}%{_cross_udevrulesdir}/80-ephemeral-stor
 %{_cross_bindir}/pluto
 %dir %{_cross_datadir}/eks
 %{_cross_datadir}/eks/eni-max-pods
+
+%files -n %{_cross_os}ascwp
+%{_cross_bindir}/ascwp
+%dir %{_cross_templatedir}
+%{_cross_templatedir}/ascwp-toml
+%{_cross_unitdir}/ascwp.service
 %endif
 
 %files -n %{_cross_os}static-pods

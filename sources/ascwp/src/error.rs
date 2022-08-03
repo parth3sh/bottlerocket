@@ -30,15 +30,4 @@ pub enum Error {
 
     #[snafu(display("IMDS request failed: No '{}' found", what))]
     ImdsNone { what: String },
-
-    #[snafu(display("SignalResource request failed: {}", source))]
-    SignalResource {
-        source: rusoto_core::RusotoError<rusoto_cloudformation::SignalResourceError>,
-    },
-
-    #[snafu(display("Unable to parse '{}' as a region: {}", region, source))]
-    RegionParse {
-        region: String,
-        source: rusoto_core::region::ParseRegionError,
-    },
 }
