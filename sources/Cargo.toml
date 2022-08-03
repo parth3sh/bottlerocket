@@ -68,7 +68,7 @@ members = [
     "api/migration/migrations/v1.9.0/kernel-modules-setting",
     "api/migration/migrations/v1.9.0/kernel-modules-setting-metadata",
     "api/migration/migrations/v1.9.0/kubelet-no-daemon-reload",
-    "api/migration/migrations/v1.10.0/add-eks_autoscaling",
+    "api/migration/migrations/v1.10.0/add-eks-autoscaling",
 
     "bottlerocket-release",
 
