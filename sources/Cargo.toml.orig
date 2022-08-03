@@ -1,0 +1,121 @@
+[workspace]
+members = [
+    "api/apiserver",
+    "api/apiclient",
+    "api/bootstrap-containers",
+    "api/bork",
+    "api/certdog",
+    "api/corndog",
+    "api/datastore",
+    "api/early-boot-config",
+    "api/ecs-settings-applier",
+    "api/netdog",
+    "api/sundog",
+    "api/schnauzer",
+    "api/pluto",
+    "api/host-containers",
+    "api/static-pods",
+    "api/storewolf",
+    "api/thar-be-settings",
+    "api/thar-be-updates",
+    "api/settings-committer",
+    "api/migration/migrator",
+    "api/migration/migration-helpers",
+    "api/shibaken",
+    "api/prairiedog",
+
+    # "api/migration/migrations/vX.Y.Z/..."
+    "api/migration/migrations/v1.3.0/etc-hosts-service",
+    "api/migration/migrations/v1.3.0/hostname-affects-etc-hosts",
+    "api/migration/migrations/v1.3.0/control-container-v0-5-2",
+    "api/migration/migrations/v1.4.0/registry-mirror-representation",
+    "api/migration/migrations/v1.4.2/admin-container-v0-7-3",
+    "api/migration/migrations/v1.4.2/control-container-v0-5-3",
+    "api/migration/migrations/v1.5.0/oci-hooks-setting",
+    "api/migration/migrations/v1.5.0/oci-hooks-setting-metadata",
+    "api/migration/migrations/v1.5.1/control-container-v0-5-4",
+    "api/migration/migrations/v1.5.3/vmware-host-containers",
+    "api/migration/migrations/v1.6.0/node-taints-representation",
+    "api/migration/migrations/v1.6.0/aws-admin-container-v0-7-4",
+    "api/migration/migrations/v1.6.0/aws-control-container-v0-5-5",
+    "api/migration/migrations/v1.6.0/public-admin-container-v0-7-4",
+    "api/migration/migrations/v1.6.0/public-control-container-v0-5-5",
+    "api/migration/migrations/v1.6.2/add-cfsignal",
+    "api/migration/migrations/v1.6.2/container-registry-credentials",
+    "api/migration/migrations/v1.6.2/container-registry-credentials-metadata",
+    "api/migration/migrations/v1.7.0/aws-admin-container-v0-8-0",
+    "api/migration/migrations/v1.7.0/aws-control-container-v0-6-0",
+    "api/migration/migrations/v1.7.0/public-admin-container-v0-8-0",
+    "api/migration/migrations/v1.7.0/public-control-container-v0-6-0",
+    "api/migration/migrations/v1.8.0/boot-setting",
+    "api/migration/migrations/v1.8.0/boot-setting-metadata",
+    "api/migration/migrations/v1.8.0/kubelet-pod-pids-limit",
+    "api/migration/migrations/v1.8.0/add-pull-behavior",
+    "api/migration/migrations/v1.8.0/add-autoscaling",
+    "api/migration/migrations/v1.8.0/etc-hosts",
+    "api/migration/migrations/v1.8.0/etc-hosts-metadata",
+    "api/migration/migrations/v1.8.0/cluster-dns-ip-list",
+    "api/migration/migrations/v1.8.0/pki-affected-services",
+    "api/migration/migrations/v1.8.0/kubelet-provider-id",
+    "api/migration/migrations/v1.8.0/aws-admin-container-v0-9-0",
+    "api/migration/migrations/v1.8.0/aws-control-container-v0-6-1",
+    "api/migration/migrations/v1.8.0/public-admin-container-v0-9-0",
+    "api/migration/migrations/v1.8.0/public-control-container-v0-6-1",
+    "api/migration/migrations/v1.9.0/ntp-affected-services",
+    "api/migration/migrations/v1.9.0/shibaken-admin-userdata-semantics",
+    "api/migration/migrations/v1.9.0/shibaken-send-metrics",
+    "api/migration/migrations/v1.9.0/image-gc-thresholds",
+    "api/migration/migrations/v1.9.0/kernel-modules-setting",
+    "api/migration/migrations/v1.9.0/kernel-modules-setting-metadata",
+    "api/migration/migrations/v1.9.0/kubelet-no-daemon-reload",
+<<<<<<< HEAD
+    "api/migration/migrations/v1.10.0/add-eks-autoscaling",
+=======
+    "api/migration/migrations/v1.9.0/updates-targets-base-url",
+>>>>>>> 2a6c5e92352134bb2c1e17c5317d1446b97ad7f5
+
+    "bottlerocket-release",
+
+    "bottlerocket-variant",
+
+    "imdsclient",
+
+    "driverdog",
+
+    "generate-readme",
+
+    "ghostdog",
+
+    "metricdog",
+
+    "cfsignal",
+
+    "logdog",
+
+    "models",
+
+    "parse-datetime",
+
+    "retry-read",
+
+    "updater/block-party",
+    "updater/signpost",
+    "updater/update_metadata",
+    "updater/updog",
+
+    "webpki-roots-shim",
+
+    "constants",
+
+    "shimpei",
+
+    "ascwp"
+]
+
+[profile.release]
+debug = true
+
+# This replaces webpki-roots with a shim that reads from the ca-certificates package. See
+# webpki-roots-shim/Cargo.toml for more information about using the right version number.
+[patch.crates-io.webpki-roots]
+path = "webpki-roots-shim"

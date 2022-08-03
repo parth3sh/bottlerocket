@@ -45,6 +45,8 @@ ap-southeast-1
 ap-southeast-2
 ap-southeast-3
 ca-central-1
+cn-north-1
+cn-northwest-1
 eu-central-1
 eu-north-1
 eu-south-1
@@ -200,7 +202,7 @@ If you want to customize the behavior of your instance further, you can find the
 Now we can launch a Bottlerocket instance in our cluster!
 
 There are a few values to make sure you change in this command:
-* YOUR_KEY_NAME: your SSH keypair name, as registered with EC2
+* YOUR_KEY_NAME: your SSH key pair name, as registered with EC2
 * SUBNET_ID: the subnet you selected earlier
   * If you chose a public subnet, either add `--associate-public-ip-address` to the command, or attach an Elastic IP afterward.
 * BOTTLEROCKET_AMI_ID: the Amazon-provided AMI ID you found above, or the ID of an AMI you registered
