@@ -7,7 +7,7 @@ use std::process;
 /// We added a new setting prefix for configuring autoscaling in k8s variants.
 /// Remove the whole `settings.eks_autoscaling` prefix if we downgrade.
 fn run() -> Result<()> {
-    migrate(AddPrefixesMigration(vec!["settings.eks_autoscaling"]))
+    migrate(AddPrefixesMigration(vec!["settings.eks-autoscaling"]))
 }
 
 // Returning a Result from main makes it print a Debug representation of the error, but with Snafu
