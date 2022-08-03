@@ -1,1 +1,1 @@
-should_wait = "{{settings.autoscaling.should-wait}}"
+should_wait = {{settings.eks_autoscaling.should-wait}}

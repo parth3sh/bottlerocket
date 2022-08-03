@@ -27,5 +27,5 @@ struct Settings {
     container_registry: RegistrySettings,
     oci_hooks: OciHooks,
     cloudformation: CloudFormationSettings,
-    autoscaling: AutoScalingSettings,
+    eks_autoscaling: AutoScalingSettings,
 }
